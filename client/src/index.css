@@ -1,37 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
-  --quatrinary: #cadbda;
-  --light: #e1f5f4;
-  --dark: #6c7575;
+  --primary: #30cbc8;
+  --secondary: #06333a;
+  --background: #007680;
+  --yellow: #ffc301;
+  --orange: #ff6b15;
+  --light: #ffffff;
+  --dark: #313436;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
   --spacing-two: calc(1rem * 0.5);
   --spacing-three: 1rem;
   --spacing-four: calc(1rem * 1.5);
-  --spacing-five: calc(1rem * 3);
+  --spacing-five: calc(1rem * 4);
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--light); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--dark); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(126, 126, 126); 
+}
+
 html,
 body {
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Red Hat Display', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-color: var(--light);
+  overflow-x: hidden;
+}
+
+header{
+ height: 10vh;
+  z-index: 1;
 }
 
 h1,
@@ -40,14 +70,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Red Hat Display', sans-serif;
   font-weight: 700;
   margin: 5px 0;
   line-height: 1.25;
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 4.25rem;
 }
 
 h2 {
@@ -76,7 +106,7 @@ p {
 }
 
 a {
-  color: var(--dark);
+  color: var(--secondary);
   text-decoration: none;
 }
 
@@ -97,7 +127,7 @@ nav a {
 
 nav a:hover {
   color: var(--secondary);
-  background-color: var(--dark);
+  background-color: var(--yellow);
 }
 
 .page-title {
@@ -114,41 +144,67 @@ nav a:hover {
   padding: 0.5rem 1.2rem;
   margin: 5px 0;
   border-radius: var(--border-radius);
-  border: none;
-  color: var(--dark);
+  border-bottom: var(--orange) 5px solid;
+  border-right: var(--orange) 5px solid;
+  color: var(--light);
   outline: none;
-  background-color: var(--secondary);
+  background-color: var(--yellow);
   transition: all 0.5s;
 }
 
 .btn:hover,
 .pill:hover {
-  color: var(--secondary);
-  background-color: var(--dark);
-}
-
-.btn:hover a,
-.pill:hover a {
-  color: var(--secondary);
+  color: var(--light);
+  background-color: var(--orange);
+  border-bottom: var(--secondary) 5px solid;
+  border-right: var(--secondary) 5px solid;
 }
 
 .btn-inline {
   display: inline;
 }
 
+
+
+.canvasdraw{
+  margin-left: 16vw;
+  margin-bottom: 5vh;
+  box-shadow: 0px 10px 10px 10px rgb(0 0 0 / 25%);
+}
+.tools
+{   display: block;
+    position: absolute;
+    right: 0;
+    top:10%;
+    width: 6%;
+    height: 100%;
+}
+
+.user-list
+{
+display: block;
+position: absolute;
+left: 0;
+top:10%;
+margin-left: -90px;
+width: 10%;
+}
+
+
+
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
   border-radius: var(--border-radius);
   background-color: var(--light);
   color: var(--dark);
+  box-shadow: 0px 10px 10px 10px rgb(0 0 0 / 25%);
 }
 
 .card-header {
-  color: var(--secondary);
+  color: var(--orange);
   margin: 0;
-  background-color: var(--dark);
+  background-color: var(--light);
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
@@ -157,6 +213,119 @@ nav a:hover {
   padding: 2.5%;
   font-size: 1.4rem;
 }
+
+/* GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-height: 560px;
+  overflow-y: scroll;
+}
+
+.gallery img {
+  
+  background: #e1f5f4;
+  width: 100%;
+  height: 100%;
+  grid-column: span 2;
+}
+
+.gallery img:last-child:nth-child(3n - 1) {
+  grid-column-end: -2;
+  box-shadow: 0px 30px 30px 30px rgb(0 0 0 / 30%);
+}
+
+.gallery img:nth-last-child(2):nth-child(3n + 1) {
+  grid-column-end: 4;
+  box-shadow: 0px 30px 30px 30px rgb(0 0 0 / 30%);
+}
+
+/* Dealing with single orphan */
+
+.gallery img:last-child:nth-child(3n - 2) {
+  grid-column-end: 5;
+  box-shadow: 0px 30px 30px 30px rgb(0 0 0 / 30%);
+}
+
+/*
+  And here are some declarations for the image caption.
+  Just hover over one of the last 5 images to see it.
+*/
+
+.gallery .item {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery .item img {
+  vertical-align: middle;
+}
+
+.gallery .caption {
+  margin: 0;
+  padding: 1em;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.5s;
+  transform: translateY(100%);
+  background: rgba(0, 0, 0, 0.7);
+  color: rgb(255, 255, 255);
+}
+
+.gallery .item:hover .caption {
+  transform: translateY(0%);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--light);
+  margin-bottom: 5vh;
+  width: 100vw;
+  height:94vh;
+  overflow: hidden;
+}
+
+.heroimg{
+  width: 60%;
+  height: 90%;
+  /*background-image: url('./utils/homebg.png');*/
+  background-repeat: no-repeat;
+  background-size: 75% 100%;
+  margin-left: 30vw;
+}
+
+.heroborder{
+  position: relative;
+  z-index: 2;
+  width: 300vw;
+  margin-left: -100vw;
+  margin-top: -100px;
+  border-bottom: 50px solid var(--primary);
+  overflow: hidden;
+  box-shadow: 0 15px 10px -10px rgb(0 0 0 / 20%);
+}
+
+.left{
+  display: block;
+  float: left;
+}
+
+.abt-image{
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 500px;
+  height: 500px;
+}
+
 
 /* FORM */
 .form-label,
@@ -175,8 +344,26 @@ nav a:hover {
   padding: 0.75rem;
   margin: 0.2rem 0;
   font-size: 1.2rem;
-  border: 2px solid var(--dark);
+  border: 2px solid var(--secondary);
   border-radius: var(--border-radius);
+}
+
+input[type=button] {
+  outline: none !important;
+  box-shadow: none !important;
+}
+input[type=button]::-moz-focus-inner {
+  border: 0 !important;
+}
+
+input[type=number] {
+  outline: none !important;
+  box-shadow: none !important;
+  width: 50px !important;
+}
+input[type=number]::-moz-focus-inner {
+  border: 0 !important;
+  width: 50px !important;
 }
 
 [type='radio']:checked,
@@ -760,12 +947,12 @@ nav a:hover {
   color: var(--secondary);
 }
 
-.text-tertiary {
-  color: var(--tertiary);
+.text-yellow {
+  color: var(--yellow);
 }
 
-.text-quatrinary {
-  color: var(--quatrinary);
+.text-orange {
+  color: var(--orange);
 }
 
 .text-light {
@@ -790,15 +977,82 @@ nav a:hover {
 }
 
 .bg-tertiary {
-  background-color: var(--tertiary);
+  background-color: var(--primary);
 }
 
 .bg-light {
-  background-color: var(--light);
+  background-color: var(--primary);
 }
 
-.bg-dark {
-  background-color: var(--dark);
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 24px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: var(--dark);
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: var(--orange);
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: var(--light);
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: var(--dark);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: var(--light);
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 /* FLEX CONTENT */
@@ -839,6 +1093,13 @@ nav a:hover {
 
 .align-end {
   align-items: flex-end;
+}
+
+.align-right-abs {
+  position: absolute;
+  float: right;
+  margin-left: 5vw;
+  margin-bottom: 5vh;
 }
 
 .align-center {
@@ -900,6 +1161,7 @@ nav a:hover {
 
 /* col-sm */
 @media screen and (min-width: 640px) {
+
   .col-sm-auto {
     flex-grow: 1;
     flex-basis: 0;

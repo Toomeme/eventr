@@ -13,6 +13,10 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+const CLIENT_SECRET = '70207f228e8f7162a0bb6860491be6ff24ff58566e795dbb8b7257be0ec155cc';
+
+const CLIENT_ID = 'Mjc4Nzk0NzV8MTY1NzkxMzI4MC4xMDY3MDc2';
+
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));

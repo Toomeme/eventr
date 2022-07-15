@@ -1,6 +1,6 @@
 import React from 'react';
 import ThoughtList from '../components/ThoughtList';
-import ThoughtForm from '../components/ThoughtForm';
+import { Link } from 'react-router-dom';
 import FriendList from '../components/FriendList';
 
 import Auth from '../utils/auth';
@@ -16,21 +16,43 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-space-between">
-        {loggedIn && (
-          <div className="col-12 mb-3">
-            <ThoughtForm />
-          </div>
-        )}
-        <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
+        <div className='hero'>
+        <div className='mt-5'>
+        <h1 className='text-yellow'>Play</h1>
+        <h2>and</h2>
+        <h1 className='text-yellow'>Compete</h1>
+        <h2>with</h2>
+        <h1 className='text-orange'>Friends!</h1>
+        <br></br>
+        <div className='align-right-abs'>
+        {loggedIn ? (
+                    <Link to="/play">
+                    <button className="btn col-12 col-md-3">
+                     Go!
+                    </button>
+                    </Link>
+          ) : (
+            <Link to="/login">
+            <button className="btn col-12 col-md-3">
+             Go!
+            </button>
+            </Link>
+          )}
+        </div>
+        </div>
+      </div>
+      <div className = 'heroborder'></div>
+      <div className="flex-row justify-space-between mt-5">
+        <div className={`col-12 mb-5 ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
             <div>Loading...</div>
           ) : (
             <ThoughtList
               thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
+              title="Latest Events!"
             />
           )}
+          <br/>
         </div>
         {loggedIn && userData ? (
           <div className="col-12 col-lg-3 mb-3">

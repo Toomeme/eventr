@@ -28,6 +28,8 @@ export const ADD_THOUGHT = gql`
   mutation addThought($thoughtText: String!) {
     addThought(thoughtText: $thoughtText) {
       _id
+      thoughtTitle
+      thoughtId
       thoughtText
       createdAt
       username

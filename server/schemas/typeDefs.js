@@ -12,7 +12,9 @@ const typeDefs = gql`
 
   type Thought {
     _id: ID
+    thoughtTitle: String
     thoughtText: String
+    thoughtId: Int
     createdAt: String
     username: String
     reactionCount: Int
