@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import React, { useState } from 'react'
 import { searchEvents } from '../utils/API';
 
 const SearchEvent = () => {
@@ -44,54 +43,44 @@ const SearchEvent = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
+      <div className='text-light bg-dark'>
+        <div className='container'>
           <h1>Search for Events!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
+          <form onSubmit={handleFormSubmit}>
+                <textarea
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
+                  className="form-input col-12 col-md-9"
                   placeholder='Search for a event'
                 />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron>
+                <button className="btn col-12 col-md-3" type="submit">
+                Submit
+                </button>
+          </form>
+        </div>
+      </div>
 
-      <Container>
+      <div className='container'>
         <h2>
           {searchedEvents.length
             ? `Viewing ${searchedEvents.length} results:`
             : 'Search for a event to begin'}
         </h2>
-        <CardColumns>
+        <div className='flex-column'>
           {searchedEvents.map((event) => {
             return (
-              <Card key={event.eventId} border='dark'>
-                {event.image ? (
-                  <Card.Img src={event.image} alt={`The cover for ${event.title}`} variant='top' />
-                ) : null}
-                <Card.Body>
-                  <Card.Title>{event.title}</Card.Title>
+              <div className='card' key={event.eventId}>
+                <div className='card-header'>{event.title}</div>
+                <div className='card-body'>
                   <p className='small'>Authors: {event.authors}</p>
-                  <Card.Text>{event.description}</Card.Text>
-                </Card.Body>
-              </Card>
+                  <p>{event.description}</p>
+                </div>
+              </div>
             );
           })}
-        </CardColumns>
-      </Container>
+        </div>
+      </div>
     </>
   );
 };
