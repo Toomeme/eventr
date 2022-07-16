@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { searchEvents } from '../utils/API';
+import React, { useState } from 'react';
+import { searchAPIEvents } from '../utils/API';
 
-const SearchEvent = () => {
-  // create state for holding returned api data
+
+const SearchEvents = () => {
+  // create state for holding returned google api data
   const [searchedEvents, setSearchedEvents] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-
-  // create method to search for Events and set state on form submit
+  // create method to search for events and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -17,21 +17,22 @@ const SearchEvent = () => {
     }
 
     try {
-      const response = await searchEvents(searchInput);
+      const response = await searchAPIEvents(searchInput);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
-      const { items } = await response.json();
+      const { events } = await response.json();
+      console.log(events);
 
-      const eventData = items.map((event) => ({
+      const eventData = events.map((event) => ({
         eventId: event.id,
-        authors: event.volumeInfo.authors || ['No author to display'],
+        venue: event.venue.name || ['No author to display'],
         title: event.title,
-        description: event.volumeInfo.description,
-        url: event.url,
-        image: event.volumeInfo.imageLinks?.thumbnail || '',
+        datetime_local: event.datetime_local,
+        link: event.url,
+        image: event.performers[0].image || '',
       }));
 
       setSearchedEvents(eventData);
@@ -52,7 +53,7 @@ const SearchEvent = () => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   className="form-input col-12 col-md-9"
-                  placeholder='Search for a event'
+                  placeholder='Search for an event'
                 />
                 <button className="btn col-12 col-md-3" type="submit">
                 Submit
@@ -71,10 +72,13 @@ const SearchEvent = () => {
           {searchedEvents.map((event) => {
             return (
               <div className='card' key={event.eventId}>
+                {event.image ? (
+                  <img src={event.image} alt={`The banner for ${event.title}`}/>
+                ) : null}
                 <div className='card-header'>{event.title}</div>
                 <div className='card-body'>
-                  <p className='small'>Authors: {event.authors}</p>
-                  <p>{event.description}</p>
+                  <p className='small'>Venue: {event.venue}</p>
+                  <p>{event.datetime_local}</p>
                 </div>
               </div>
             );
@@ -85,4 +89,4 @@ const SearchEvent = () => {
   );
 };
 
-export default SearchEvent;
+export default SearchEvents;
