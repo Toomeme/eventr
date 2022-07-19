@@ -26,7 +26,7 @@ const Home = () => {
         <br></br>
         <div className='align-right-abs'>
         {loggedIn ? (
-                    <Link to="/play">
+                    <Link to="/search">
                     <button className="btn col-12 col-md-3">
                      Go!
                     </button>

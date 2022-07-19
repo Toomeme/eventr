@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { searchAPIEvents } from '../utils/API';
-
+import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 const SearchEvents = () => {
   // create state for holding returned google api data
   const [searchedEvents, setSearchedEvents] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+
+  const loggedIn = Auth.loggedIn();
 
   // create method to search for events and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -75,11 +78,33 @@ const SearchEvents = () => {
                 {event.image ? (
                   <img src={event.image} alt={`The banner for ${event.title}`}/>
                 ) : null}
-                <div className='card-header'>{event.title}</div>
+                <a href = {event.link}><div className='card-header'>{event.title}</div></a>
                 <div className='card-body'>
                   <p className='small'>Venue: {event.venue}</p>
                   <p>{event.datetime_local}</p>
                 </div>
+                {loggedIn ? (
+                  <Link to={{
+                      pathname:'/submit',
+                      state:{
+                        eventId: event.eventId,
+                        venue: event.venue,
+                        title: event.title,
+                        datetime_local: event.datetime_local,
+                        link: event.link,
+                        image: event.image,
+                      }
+                    }}>
+                    <button className="btn col-12 col-md-3">
+                     Go!
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                  <button className="btn col-12 col-md-3">
+                  Go!
+                  </button>
+                  </Link>)}
               </div>
             );
           })}
