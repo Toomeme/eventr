@@ -52,7 +52,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/submit/" component={Post} />
+              <Route exact path="/submit/:image" component={Post} />
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/thought/:id" component={SingleThought} />
               <Route exact path="/search" component={Events} />

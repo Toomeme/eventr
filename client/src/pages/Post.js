@@ -14,19 +14,20 @@ const Post = () => {
   const { data: userData } = useQuery(QUERY_ME);
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
   const thoughts = data?.thoughts || [];
-  console.log(thoughts);
   const loggedIn = Auth.loggedIn();
   const location = useLocation();
-  const { eventId: thoughtId,venue,title: thoughtTitle,datetime_local,link,image} = location.state
+  const { eventId,venue:thoughtVenue,title: thoughtTitle,datetime_local,link,image} = location.state
 
   return ( 
     <main>
  
       <h2>{thoughtTitle}</h2>
-        
+      <h5>{thoughtVenue}</h5>
+      <a href = {link}><img src = {image} alt ="headline for the event"></img></a>
+      <p>{thoughtTitle}</p>
         {loggedIn && (
           <div className="col-12 mb-3">
-            <ThoughtForm />
+            <ThoughtForm thoughtImage={eventId} />
           </div>
         )}
                   {loggedIn && userData ? (

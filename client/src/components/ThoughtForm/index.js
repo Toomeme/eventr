@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { Redirect,useParams } from 'react-router-dom';
 
 const ThoughtForm = () => {
   const [thoughtText, setText] = useState('');
-  const thoughtTitle = useState('');
-  const thoughtId = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const {image: thoughtImage} = useParams();
 
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
     update(cache, { data: { addThought } }) {
-      
-        // could potentially not exist yet, so wrap in a try/catch
       try {
-        // update me array's cache
-        const { me } = cache.readQuery({ query: QUERY_ME });
+        // update thought array's cache
+        // could potentially not exist yet, so wrap in a try/catch
+        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
         cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: { ...me, thoughts: [...me.thoughts, addThought] } },
+          query: QUERY_THOUGHTS,
+          data: { thoughts: [addThought, ...thoughts] },
         });
       } catch (e) {
-        console.warn("First thought insertion by user!")
+        console.error(e);
       }
 
-      // update thought array's cache
-      const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+      // update me object's cache
+      const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
-        query: QUERY_THOUGHTS,
-        data: { thoughts: [addThought, ...thoughts] },
+        query: QUERY_ME,
+        data: { me: { ...me, thoughts: [...me.thoughts, addThought] } },
       });
-    }
+    },
   });
+  
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -45,19 +45,25 @@ const ThoughtForm = () => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
       await addThought({
-        variables: { thoughtText,thoughtTitle,thoughtId },
+        variables: {thoughtText,thoughtImage}
       });
-
+      
       // clear form value
       setText('');
       setCharacterCount(0);
+      setFormSubmitted(true);
+  
     } catch (e) {
       console.error(e);
     }
   };
+
+  if (formSubmitted)
+  {
+    return <Redirect push to={`/profile`}/>;
+  }
 
   return (
     <div>
@@ -72,13 +78,13 @@ const ThoughtForm = () => {
         onSubmit={handleFormSubmit}
       >
         <textarea
-          placeholder="Here's a new thought..."
+          placeholder="Write a short description!"
           value={thoughtText}
           className="form-input col-12 col-md-9"
           onChange={handleChange}
         ></textarea>
         <button className="btn col-12 col-md-3" type="submit">
-          Submit
+         Submit
         </button>
       </form>
     </div>

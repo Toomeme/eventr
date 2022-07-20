@@ -85,7 +85,7 @@ const SearchEvents = () => {
                 </div>
                 {loggedIn ? (
                   <Link to={{
-                      pathname:'/submit',
+                      pathname:`/submit/${event.eventId}`,
                       state:{
                         eventId: event.eventId,
                         venue: event.venue,

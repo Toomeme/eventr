@@ -12,6 +12,7 @@ const ThoughtList = ({ thoughts, title }) => {
       {thoughts &&
         thoughts.map(thought => (
           <div key={thought._id} className="card mb-3">
+            <h4>{thought.thoughtImage}</h4>
             <p className="card-header">
               <Link
                 to={`/profile/${thought.username}`}
