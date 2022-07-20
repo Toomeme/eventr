@@ -12,7 +12,7 @@ const ThoughtList = ({ thoughts, title }) => {
       {thoughts &&
         thoughts.map(thought => (
           <div key={thought._id} className="card mb-3">
-            <h4>{thought.thoughtImage}</h4>
+            <h4 className='text-light'>{thought.thoughtTitle}</h4>
             <p className="card-header">
               <Link
                 to={`/profile/${thought.username}`}
@@ -21,14 +21,14 @@ const ThoughtList = ({ thoughts, title }) => {
               >
                 {thought.username}
               </Link>{' '}
-              thought on {thought.createdAt}
+              on {thought.createdAt}
             </p>
             <div className="card-body">
               <Link to={`/thought/${thought._id}`}>
                 <p>{thought.thoughtText}</p>
                 <p className="mb-0">
-                  Reactions: {thought.reactionCount} || Click to{' '}
-                  {thought.reactionCount ? 'see' : 'start'} the discussion!
+                  {' '}
+                  {thought.reactionCount ? 'Join' : 'Start'} the discussion!
                 </p>
               </Link>
             </div>

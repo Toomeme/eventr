@@ -27,7 +27,7 @@ const Post = () => {
       <p>{thoughtTitle}</p>
         {loggedIn && (
           <div className="col-12 mb-3">
-            <ThoughtForm thoughtImage={eventId} />
+            <ThoughtForm thoughtImage={eventId} thoughtTitle = {thoughtTitle} />
           </div>
         )}
                   {loggedIn && userData ? (

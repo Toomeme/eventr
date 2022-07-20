@@ -17,14 +17,11 @@ const Home = () => {
   return (
     <main>
         <div className='hero'>
-        <div className='mt-5'>
-        <h1 className='text-yellow'>Play</h1>
-        <h2>and</h2>
-        <h1 className='text-yellow'>Compete</h1>
-        <h2>with</h2>
-        <h1 className='text-orange'>Friends!</h1>
+        <div className='mt-5 text-center'>
+        <h1 className='text-primary'>EVENTR</h1>
+        <h3 className='text-center'>Find new friends to go to events with.</h3>
         <br></br>
-        <div className='align-right-abs'>
+        <div>
         {loggedIn ? (
                     <Link to="/search">
                     <button className="btn col-12 col-md-3">

@@ -4,7 +4,7 @@ import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
 import { Redirect,useParams } from 'react-router-dom';
 
-const ThoughtForm = () => {
+const ThoughtForm = ({thoughtTitle}) => {
   const [thoughtText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -47,7 +47,7 @@ const ThoughtForm = () => {
     event.preventDefault();
     try {
       await addThought({
-        variables: {thoughtText,thoughtImage}
+        variables: {thoughtTitle,thoughtText,thoughtImage}
       });
       
       // clear form value
