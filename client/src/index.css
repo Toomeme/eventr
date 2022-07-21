@@ -144,7 +144,7 @@ nav a:hover {
   border-radius: var(--border-radius);
   border-bottom: var(--secondary) 5px solid;
   border-right: var(--secondary) 5px solid;
-  color: var(--light);
+  color: #fff;
   outline: none;
   background-color: var(--primary);
   transition: all 0.5s;
@@ -152,7 +152,7 @@ nav a:hover {
 
 .btn:hover,
 .pill:hover {
-  color: var(--light);
+  color: #fff;
   background-color: var(--secondary);
   border-bottom: var(--secondary) 5px solid;
   border-right: var(--secondary) 5px solid;
@@ -210,6 +210,7 @@ width: 10%;
 .card-body {
   padding: 2.5%;
   font-size: 1.4rem;
+  color: var(--light);
 }
 
 /* GALLERY */
@@ -285,7 +286,7 @@ width: 10%;
 .hero {
   display: flex;
   justify-content: center;
-  background-color: var(--light);
+  background-color: var(--background);
   margin-bottom: 5vh;
   margin-left: -10%;
   width: 100vw;
@@ -977,73 +978,6 @@ input[type=number]::-moz-focus-inner {
   background-color: var(--secondary);
 }
 
-/* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 24px;
-}
-
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: var(--dark);
-}
-
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: var(--secondary);
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  height: 24px;
-  width: 24px;
-}
-
-/* Color/shape of close button cross */
-.bm-cross {
-  background: var(--light);
-}
-
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: fixed;
-  height: 100%;
-}
-
-/* General sidebar styles */
-.bm-menu {
-  background: var(--dark);
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: var(--light);
-  padding: 0.8em;
-}
-
-/* Individual item */
-.bm-item {
-  display: inline-block;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
-}
-
 /* FLEX CONTENT */
 .flex-row {
   display: flex;
@@ -1089,6 +1023,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   float: right;
   margin-left: 5vw;
   margin-bottom: 5vh;
+}
+
+.align-right-btn {
+  position: absolute;
+  float: right;
+  margin-left: 50vw;
+  margin-bottom: -5vh;
 }
 
 .align-center {
@@ -1146,6 +1087,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .col-12 {
   flex: 0 0 100%;
+}
+
+@media screen and (max-width: 640px){
+  h1 {
+    font-size: 5.25rem;
+  }
 }
 
 /* col-sm */
@@ -1239,6 +1186,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* col-md */
 @media screen and (min-width: 768px) {
+
   .col-md-auto {
     flex-grow: 1;
     flex-basis: 0;

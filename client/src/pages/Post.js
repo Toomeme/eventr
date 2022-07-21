@@ -23,8 +23,8 @@ const Post = () => {
  
       <h2>{thoughtTitle}</h2>
       <h5>{thoughtVenue}</h5>
-      <a href = {link}><img src = {image} alt ="headline for the event"></img></a>
-      <p>{thoughtTitle}</p>
+      <a href = {link}><img src = {image} alt ="Headline for the event"></img></a>
+      <p>Event Date: {datetime_local}</p>
         {loggedIn && (
           <div className="col-12 mb-3">
             <ThoughtForm thoughtImage={eventId} thoughtTitle = {thoughtTitle} />

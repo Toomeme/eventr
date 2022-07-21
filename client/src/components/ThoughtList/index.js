@@ -11,8 +11,8 @@ const ThoughtList = ({ thoughts, title }) => {
       <h3>{title}</h3>
       {thoughts &&
         thoughts.map(thought => (
-          <div key={thought._id} className="card mb-3">
-            <h4 className='text-light'>{thought.thoughtTitle}</h4>
+          <div key={thought._id} className="card mb-3 align-center">
+            <h4 className='text-light ml-2'>{thought.thoughtTitle}</h4>
             <p className="card-header">
               <Link
                 to={`/profile/${thought.username}`}

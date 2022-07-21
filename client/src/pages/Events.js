@@ -47,16 +47,17 @@ const SearchEvents = () => {
 
   return (
     <>
-      <div className='text-light bg-dark'>
+      <div className='text-light'>
         <div className='container'>
-          <h1>Search for Events!</h1>
-          <form onSubmit={handleFormSubmit}>
-                <textarea
+          <h2>Search for Events!</h2>
+          <form className='flex-row' onSubmit={handleFormSubmit}>
+                <input
                   name='searchInput'
+                  type= 'search'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   className="form-input col-12 col-md-9"
-                  placeholder='Search for an event'
+                  placeholder='Search for an event...'
                 />
                 <button className="btn col-12 col-md-3" type="submit">
                 Submit
@@ -66,11 +67,11 @@ const SearchEvents = () => {
       </div>
 
       <div className='container'>
-        <h2>
+        <h3>
           {searchedEvents.length
             ? `Viewing ${searchedEvents.length} results:`
             : 'Search for a event to begin'}
-        </h2>
+        </h3>
         <div className='flex-column'>
           {searchedEvents.map((event) => {
             return (
@@ -79,10 +80,7 @@ const SearchEvents = () => {
                   <img src={event.image} alt={`The banner for ${event.title}`}/>
                 ) : null}
                 <a href = {event.link}><div className='card-header'>{event.title}</div></a>
-                <div className='card-body'>
-                  <p className='small'>Venue: {event.venue}</p>
-                  <p>{event.datetime_local}</p>
-                </div>
+                <div className='card-body flex-column'>
                 {loggedIn ? (
                   <Link to={{
                       pathname:`/submit/${event.eventId}`,
@@ -95,16 +93,21 @@ const SearchEvents = () => {
                         image: event.image,
                       }
                     }}>
-                    <button className="btn col-12 col-md-3">
-                     Go!
+                    <button className="btn col-12 col-md-3 justify-flex-end">
+                     Choose
                     </button>
                   </Link>
                 ) : (
                   <Link to="/login">
-                  <button className="btn col-12 col-md-3">
-                  Go!
+                  <button className="btn col-12 col-md-3 justify-flex-end">
+                  Choose
                   </button>
                   </Link>)}
+                  <p className='small'>Venue: {event.venue}</p>
+                  <p>{event.datetime_local}</p>                
+        
+                </div>
+
               </div>
             );
           })}

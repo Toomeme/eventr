@@ -51,15 +51,18 @@ const SingleThought = (props) => {
 
   return (
     <div>
-      <div className="card mb-3">
-        <h3>{retreivedEvents[0]?.title||"Loading..."}</h3>
+      <div className="card mb-3 text-light">
+        <h2 className="ml-2">{retreivedEvents[0]?.title||"Loading..."}</h2>
+        <h5 className="ml-2">{retreivedEvents[0]?.venue.name||"Loading..."}</h5>
+        <p className="ml-2">Event Date: {retreivedEvents[0]?.datetime_local||"Loading..."}</p>
         <p className="card-header">
           <span style={{ fontWeight: 700 }} className="text-light">
             {thought.username}
           </span>{' '}
-          thought on {thought.createdAt}
+          on {thought.createdAt}
         </p>
         <div className="card-body">
+      <a href = {retreivedEvents[0]?.url||"Loading..."}><img src = {retreivedEvents[0]?.performers[0].image||"Loading..."} alt ="Headline for the event"></img></a>
           <p>{thought.thoughtText}</p>
         </div>
       </div>

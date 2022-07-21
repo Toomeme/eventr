@@ -5,17 +5,17 @@ const ReactionList = ({ reactions }) => {
   return (
     <div className="card mb-3">
       <div className="card-header">
-        <span className="text-light">Reactions</span>
+        <span className="text-light">Comments:</span>
       </div>
       <div className="card-body">
         {reactions &&
           reactions.map(reaction => (
-            <p className="pill mb-3" key={reaction._id}>
-              {reaction.reactionBody} //{' '}
-              <Link to={`/profile/${reaction.username}`} style={{ fontWeight: 700 }}>
-                {reaction.username} on {reaction.createdAt}
+            <div className="mb-3" key={reaction._id}>
+              <Link to={`/profile/${reaction.username}`}>
+              <h5 style={{ fontWeight: 300 }}>{reaction.username} on {reaction.createdAt}</h5>
               </Link>
-            </p>
+              <p className='text-light'>{reaction.reactionBody}{' '}</p>
+            </div>
           ))}
       </div>
     </div>
